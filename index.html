@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>luxebyayush | Build Your 7-Figure Brand</title>
+    <meta name="description" content="Crafting ultra-luxury digital experiences for visionary e-commerce and design brands." />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP Libraries (Essential for the new Showcase) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'white': '#ffffff',
+              'off-white': '#f9f9f9',
+              'primary': '#6a82fb',
+              'black': '#000000',
+              'gray-line': '#e5e5e5',
+            },
+            fontFamily: {
+              'heading': ['Montserrat', 'sans-serif'],
+              'sans': ['Inter', 'sans-serif'],
+            },
+            backgroundImage: {
+              'grid-architectural': "linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)",
+            },
+            backgroundSize: {
+              'grid-lg': '80px 80px',
+            },
+            animation: {
+              'marquee': 'marquee 30s linear infinite',
+              'marquee-reverse': 'marquee-reverse 30s linear infinite',
+              'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'hero-reveal': 'heroReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards',
+              'hero-title': 'heroTitle 1.4s cubic-bezier(0.1, 1, 0.2, 1) forwards',
+              'subtle-pulse': 'subtlePulse 3s ease-in-out infinite',
+              'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+            },
+            keyframes: {
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              },
+              'marquee-reverse': {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(0%)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: 0, transform: 'translateY(20px)' },
+                '100%': { opacity: 1, transform: 'translateY(0)' },
+              },
+              heroReveal: {
+                '0%': { opacity: 0, transform: 'translateY(60px) scale(0.9)', filter: 'blur(8px)' },
+                '100%': { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' },
+              },
+              heroTitle: {
+                '0%': { 
+                  opacity: '0',
+                  transform: 'translateY(120%) scale(0.8) rotate(4deg)',
+                  filter: 'blur(20px)'
+                },
+                '50%': {
+                  opacity: '1',
+                  transform: 'translateY(-10%) scale(1.05) rotate(-1deg)',
+                  filter: 'blur(0px)'
+                },
+                '100%': { 
+                  opacity: '1',
+                  transform: 'translateY(0) scale(1) rotate(0deg)',
+                  filter: 'blur(0)'
+                },
+              },
+              subtlePulse: {
+                '0%, 100%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(1.05)' },
+              }
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #ffffff;
+        color: #000000;
+        cursor: none;
+        overflow-x: hidden;
+      }
+      
+      /* Typography Rules */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.04em; /* Editorial tightness */
+      }
+      p, li, a, span, input, textarea, button {
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Architectural Grid Background */
+      .bg-grid-arch {
+        background-size: 60px 60px;
+        background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+      }
+
+      /* Noise Texture for Luxury Feel */
+      .bg-noise {
+        position: relative;
+      }
+      .bg-noise::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.4;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #ffffff; }
+      ::-webkit-scrollbar-thumb { background: #000000; border-radius: 0; }
+      ::-webkit-scrollbar-thumb:hover { background: #6a82fb; }
+
+      /* Gradient Text Effect */
+      .gradient-text {
+        background: linear-gradient(90deg, #6a82fb, #fc5c7d, #f77737, #8a2be2, #6a82fb);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+        animation: gradient-text 5s linear infinite;
+        font-weight: 800;
+        display: inline-block; 
+        filter: drop-shadow(0 0 10px rgba(106, 130, 251, 0.4));
+      }
+
+      .gradient-bg {
+        background: linear-gradient(90deg, #6a82fb, #fc5c7d, #f77737, #8a2be2, #6a82fb);
+        background-size: 200% auto;
+        animation: gradient-text 5s linear infinite;
+      }
+
+      @keyframes gradient-text {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      /* Elegant Stroke text */
+      .text-stroke {
+        -webkit-text-stroke: 1px #d1d5db; 
+        color: transparent;
+        transition: all 0.3s ease;
+      }
+      .group:hover .text-stroke {
+        -webkit-text-stroke: 1px #000;
+        color: transparent;
+      }
+      
+      /* Dark Mode Stroke */
+      .text-stroke-white {
+        -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+        color: transparent;
+        transition: all 0.3s ease;
+      }
+      .group:hover .text-stroke-white {
+        -webkit-text-stroke: 1px #ffffff;
+        color: transparent;
+      }
+
+      /* Hover Underline */
+      .hover-line {
+        position: relative;
+        display: inline-block;
+      }
+      .hover-line::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: #000;
+        transform-origin: bottom right;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .hover-line:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
